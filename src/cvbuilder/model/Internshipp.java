@@ -1,19 +1,24 @@
-package cvbuilder.model;
+package model;
 
-public class Internshipp {
+public class Internshipp extends CVEntry {
     private String company;
     private String position;
-    private String startDate;
-    private String endDate;
     private String responsibilities;
 
-    public Internshipp(String company, String position, String startDate, String endDate, String responsibilities) {
+    public Internshipp(String company, String position, String start, String end, String responsibilities) {
+        super(start, end);
         this.company = company;
         this.position = position;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.responsibilities = responsibilities;
     }
 
-    // Getter dan Setter
+    @Override
+    public String formatForDisplay() {
+        return position + " at " + company + " (" + getStart() + " - " + getEnd() + "): " + responsibilities;
+    }
+
+    @Override
+    public String toString() {
+        return formatForDisplay();
+    }
 }

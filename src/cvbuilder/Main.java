@@ -1,11 +1,4 @@
-package cvbuilder;
-
-import cvbuilder.model.Achievement;
-import cvbuilder.model.Profile;
-import cvbuilder.model.Contact;
-import cvbuilder.model.Internshipp;
-import cvbuilder.model.OrganizationExperience;
-import cvbuilder.model.Education;
+import model.*;
 import util.InputHelper;
 
 import java.util.ArrayList;
@@ -21,8 +14,8 @@ public class Main {
         String summary = InputHelper.getString("Enter a short summary");
         Profile profile = new Profile(name, title, summary);
 
-        String email = InputHelper.getString("Enter your email");
-        String phone = InputHelper.getString("Enter your phone number");
+        String email = InputHelper.getEmail("Enter your email");
+        String phone = InputHelper.getPhoneNumber("Enter your phone number");
         String address = InputHelper.getString("Enter your address");
         Contact contact = new Contact(email, phone, address);
 
@@ -75,25 +68,26 @@ public class Main {
             internships.add(new Internshipp(company, position, start, end, responsibilities));
         }
 
+        // Buat section
+        CVSection educationSection = new EducationSection(educations);
+        CVSection achievementSection = new AchievementSection(achievements);
+        CVSection organizationSection = new OrganizationSection(orgs);
+        CVSection internshipSection = new InternshipSection(internships);
+
         // Tampilkan CV
-        System.out.println("\n=== YOUR CV ===");
+        System.out.println("\n=== CURRICULUM VITAE ===\n");
         System.out.println(profile);
-        System.out.println("Contact: " + contact);
-        System.out.println("\nEducation:");
-        for (Education edu : educations) {
-            System.out.println("- " + edu);
-        }
-        System.out.println("\nAchievements:");
-        for (Achievement ach : achievements) {
-            System.out.println("- " + ach);
-        }
-        System.out.println("\nOrganizational Experience:");
-        for (OrganizationExperience org : orgs) {
-            System.out.println("- " + org);
-        }
-        System.out.println("\nInternships:");
-        for (Internshipp internship : internships) {
-            System.out.println("- " + internship);
-        }
+        System.out.println(contact + "\n");
+        System.out.println(educationSection.getSectionTitle());
+        System.out.println(educationSection.getFormattedContent());
+
+        System.out.println(achievementSection.getSectionTitle());
+        System.out.println(achievementSection.getFormattedContent());
+
+        System.out.println(organizationSection.getSectionTitle());
+        System.out.println(organizationSection.getFormattedContent());
+
+        System.out.println(internshipSection.getSectionTitle());
+        System.out.println(internshipSection.getFormattedContent());
     }
 }

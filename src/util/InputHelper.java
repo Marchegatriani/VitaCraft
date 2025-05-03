@@ -21,4 +21,28 @@ public class InputHelper {
             }
         }
     }
+
+    public static String getEmail(String prompt) {
+        while (true) {
+            System.out.print(prompt + ": ");
+            String input = scanner.nextLine().trim();
+            if (input.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                return input;
+            } else {
+                System.out.println("⚠️ Invalid email format. Please try again.");
+            }
+        }
+    }
+
+    public static String getPhoneNumber(String prompt) {
+        while (true) {
+            System.out.print(prompt + ": ");
+            String input = scanner.nextLine().trim();
+            if (input.matches("^\\+?\\d{10,15}$")) {
+                return input;
+            } else {
+                System.out.println("⚠️ Invalid phone number. Must be 10–15 digits, optionally starting with '+'.");
+            }
+        }
+    }
 }

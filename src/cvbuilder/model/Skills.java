@@ -1,4 +1,4 @@
-package cvbuilder.model;
+package model;
 
 public class Skills {
     // attribute, constructor

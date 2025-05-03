@@ -1,16 +1,30 @@
-package cvbuilder.model;
+package model;
 
-public class Education {
+public class Education extends CVEntry {
     private String degree;
     private String institution;
-    private String startYear;
-    private String endYear;
 
-    public Education(String degree, String institution, String startYear, String endYear) {
+    public Education(String degree, String institution, String start, String end) {
+        super(start, end);
         this.degree = degree;
         this.institution = institution;
-        this.startYear = startYear;
-        this.endYear = endYear;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public String getInstitution() {
+        return institution;
+    }
+
+    @Override
+    public String formatForDisplay() {
+        return degree + " at " + institution + " " + super.formatForDisplay();
+    }
+
+    @Override
+    public String toString() {
+        return formatForDisplay();
     }
 }
-    // Getter dan Setter

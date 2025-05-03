@@ -1,4 +1,4 @@
-package cvbuilder.model;
+package model;
 
 public class Profile {
     private String name;
@@ -12,4 +12,10 @@ public class Profile {
     }
 
     // Getter & Setter
+
+    @Override
+    public String toString() {
+        return name + " - " + title + "\n" + summary;
+    }
+
 }
